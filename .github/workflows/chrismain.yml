@@ -46,7 +46,7 @@ jobs:
     uses: docker-practice/actions-setup-docker@v1
     with:
       # Docker Version
-      docker_version: 20.10  # optional, default is 20.10  
+      docker_version: 28.0.4  # optional, default is 20.10  
   
   - name: Build Docker Image
     run: docker build -f Dockerfile -t myapp:latest .
