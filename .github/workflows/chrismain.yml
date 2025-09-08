@@ -36,10 +36,11 @@ jobs:
   - name: Checkout Code
     uses: actions/checkout@v2
 
-  - name: Set up Docker
-    uses: docker-practice/actions-setup-docker@v1
-    with:
-     docker_version: '28.0.4'
+#  - name: Set up Docker
+#    uses: docker-practice/actions-setup-docker@v1
+#    with:
+#     docker_version: '28.0.4'
+     
   - name: Build Docker Image
     run: docker build -f Dockerfile -t myapp:latest .
 
@@ -61,4 +62,9 @@ jobs:
        only-severities: critical,high
        sarif-file: scout-report.sarif
 
-    
+  - name: Upload Artifact
+    uses: actions/upload-artifact@v4
+    if: always()
+    with:
+      name: docker-scout-findings
+      path: scout-report.sarif    
